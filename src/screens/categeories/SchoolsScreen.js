@@ -1,4 +1,11 @@
-import {Text, View, Button, FlatList, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  Button,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState, useCallback, useEffect} from 'react';
 import {useAppDispatch, useAppSlector} from '../../redux/Store';
 import SearchBar from '../../components/SearchBar';
@@ -12,6 +19,8 @@ import courses, {selectCourses} from '../../redux/courses/CourseSlice';
 import {setCourses} from '../../redux/courses/CourseSlice';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {MarginsAndPaddings} from '../../values/dimensions';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 /*
  */
 const SchoolsScreen = () => {
@@ -37,7 +46,21 @@ const SchoolsScreen = () => {
   return (
     <View style={styles.SchoolContainer}>
       <View style={{backgroundColor: COLORS.white}}>
-        <SearchBar />
+        {/* <SearchBar /> */}
+        <View style={styles.backgroundStyle}>
+          <AntDesign name="search1" size={15} />
+          <TouchableOpacity>
+            <TextInput
+              style={styles.inputStyle}
+              placeholder="بحث"
+              autoCapitalize="none"
+              autoCorrect={false}
+              //value={term}
+              // onChangeText={onChangeTerm}
+              // onEndEditing={onTermSubmit}
+            />
+          </TouchableOpacity>
+        </View>
 
         <View
           style={{
@@ -107,7 +130,7 @@ const SchoolsScreen = () => {
             />
           </View>
         )}
-        key={Courses.id}
+        // key={Courses.id}
       />
 
       {/* <SearchResult />

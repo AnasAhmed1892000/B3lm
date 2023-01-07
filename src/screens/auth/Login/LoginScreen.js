@@ -54,15 +54,11 @@ const LoginScreen = () => {
     };
     try {
       const response = await axios(config);
-      //console.log(response);
-      dispatch(Login.setCurrentUser(true));
-      const first_name = response.data.student.first_name;
-      const second_name = response.data.student.second_name;
-      const username = first_name + ' ' + second_name;
-      dispatch(Login.setUsername(username.toString()));
-      dispatch(Login.setToken(response.data.access_token));
-      await AsyncStorage.setItem('token', response.data.access_token);
-
+      if (response.data.success == true) {
+        dispatch(Login.setCurrentUser(true));
+        console.log(response.data.access_token);
+        await AsyncStorage.setItem('token', response.data.access_token);
+      }
       console.log(response.data.access_token);
     } catch (error) {
       console.log(error);
@@ -75,7 +71,6 @@ const LoginScreen = () => {
         initialValues={initialValues}
         onSubmit={values => {
           userSignIn(values.email, values.password);
-          console.log(values.password);
 
           // **place for api request**
         }}>

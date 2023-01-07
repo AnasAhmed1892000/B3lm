@@ -1,4 +1,11 @@
-import {Text, View, Button, FlatList, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  Button,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import React, {
   useState,
   useCallback,
@@ -24,6 +31,7 @@ import {
   SelectList,
   MultipleSelectList,
 } from 'react-native-dropdown-select-list';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 /*
  */
@@ -39,6 +47,7 @@ const CentersScreen = () => {
   const [tags, setTags] = useState([]); //store the retreived tags
   var [formatedDistricts, setFormatedDistricts] = useState([]); //reformat district in an object
   var [formatedTags, setFormatedTags] = useState([]); //reformat district in an object
+  const [search, setSearch] = useState('');
   // for mdoal open and close
   //get the api responce developed tojkdnfl] cause it doesnot work
   const onOpen = () => {
@@ -48,6 +57,7 @@ const CentersScreen = () => {
     modalizeRef.current?.close();
   };
   var data = {
+    q: search,
     type: null,
     gove: selected,
     cent: null,
@@ -128,7 +138,21 @@ const CentersScreen = () => {
   return (
     <View style={styles.SchoolContainer}>
       <View style={{backgroundColor: COLORS.white}}>
-        <SearchBar />
+        {/* <SearchBar /> */}
+        <View style={styles.backgroundStyle}>
+          <AntDesign name="search1" size={15} />
+          <TouchableOpacity>
+            <TextInput
+              style={styles.inputStyle}
+              placeholder="بحث"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={search}
+              onChangeText={text => setSearch(text)}
+              onEndEditing={() => getCourses()}
+            />
+          </TouchableOpacity>
+        </View>
         <View
           style={{
             flexDirection: 'row-reverse',

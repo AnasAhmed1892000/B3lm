@@ -15,7 +15,7 @@ const SearchBar = ({term, onChangeTerm, onTermSubmit}) => {
   return (
     <View style={styles.backgroundStyle}>
       <Icon name="search1" size={15} />
-      <TouchableOpacity onPress={() => navigation.navigate('FilterSearch')}>
+      <TouchableOpacity>
         <TextInput
           style={styles.inputStyle}
           placeholder="بحث"

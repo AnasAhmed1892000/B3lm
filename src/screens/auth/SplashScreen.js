@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppDispatch} from '../../redux/Store';
 import Splash from '../../redux/splach/SplashSlice';
-import User from '../../redux/user/LoginSlice';
+//import User from '../../redux/user/LoginSlice';
 const SplashScreen = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
